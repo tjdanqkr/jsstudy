@@ -4,8 +4,20 @@ import MyComponent from './MyComponent.js';
 import EventPractice from './EventPractice.js';
 import VaildationSample from './VaildationSample.js';
 import ScrollBox from './ScrollBox.js';
-
+import LifeCycleSample from './LifeCycleSample';
+function getrandomcolor() {
+  return '#'+ Math.floor(Math.random()*16777215).toString(16);
+  
+}
 class App extends Component{
+  state={
+    color : '#000000'
+  } 
+  handleClick=()=>{
+    this.setState({
+      color : getrandomcolor()
+    });
+  }
   render(){
     const text ='당신은 어썸한가요?';
     const condition = true;
@@ -47,10 +59,16 @@ class App extends Component{
      /*<div>
        <VaildationSample></VaildationSample>
      </div>*/
-     <div>
+     /*<div>
       <ScrollBox ref={(ref)=>this.ScrollBox=ref}></ScrollBox>
       <button onClick={()=>this.ScrollBox.scrollToBottom()}> 맨밑으로</button>
+     </div>*/
+     <div>
+       <button onClick={this.handleClick}>랜덤색상</button>
+       <LifeCycleSample color={this.state.color}></LifeCycleSample>
+
      </div>
+     
     );
   }
 }
